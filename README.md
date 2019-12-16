@@ -1,3 +1,25 @@
+# EDITS TO THIS REPO:
+### Warning: work in progress
+
+This repo is a forked version of the linmix repository that ported the Kelly 07 Gibbs sampler to python by J. Meyers.  This repo reflects the method employed in Curtis-Lake, Chevallard & Charlot when fitting the M*-SFR relation using joint posterior probability distributions on M* and SFR which were produced by SED-fitting to photometry/spectra by BEAGLE (Chevallard & Charlot 2016).
+
+We have to be careful when using the output from SED-fitting to use the output correctly.  The original Kelly 2007 Gibbs sampler is expecting direct measurements of the x- and y- components but this is not what we get as output from SED-fitting. We get posterior probability distribution functions.
+
+The version of linmix.py takes as input GMM fits to posterior probability distributions, e.g.
+
+lm = linmixGMM.LinMix(GMM['x'][tempIdx], GMM['y'][tempIdx], GMM['xsig'][tempIdx], GMM['ysig'][tempIdx], \
+                                  xycovArr = GMM['xycov'][tempIdx], K=3, \
+                                  nGMM_err=args.nGauss, pi_err=GMM['amp'][tempIdx],nchains=args.nChains)
+                                  
+This repo is still work in progress:
+
+TODO: re-write to accept either GMM fits to PDFs OR direct measurements and uncertainties on x and y as well as improve these instructions.
+
+
+The original repo README file is included below:
+                                  
+
+# Original repo README file:
 # linmix
 ### A Bayesian approach to linear regression with errors in both X and Y.
 
